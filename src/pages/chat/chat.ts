@@ -12,7 +12,7 @@ export class ChatPage {
   mensagem: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
-    this.lista=af.list("https://chat-5ec9d.firebaseio.com/chat")
+    this.lista=af.list("https://chat-c5f54.firebaseio.com/chat")
   }
 
   enviarMsg() {

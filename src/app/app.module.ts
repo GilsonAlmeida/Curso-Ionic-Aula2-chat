@@ -4,20 +4,21 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { AuthService } from '../service/AuthService';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from "angularfire2";
 import { ChatPage } from '../pages/chat/chat';
-
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 export const firebaseConfig = {
 
-    apiKey: "AIzaSyDEoztwqOQ91PVvMXTndTLMOKbzrfvgeaI",
-    authDomain: "chat-5ec9d.firebaseapp.com",
-    databaseURL: "https://chat-5ec9d.firebaseio.com",
-    projectId: "chat-5ec9d",
-    storageBucket: "chat-5ec9d.appspot.com",
-    messagingSenderId: "689473812030"
+    apiKey: "AIzaSyAUDCHs3t8sSDfftsdX1hT4dizYe7XmL_o",
+    authDomain: "chat-c5f54.firebaseapp.com",
+    databaseURL: "https://chat-c5f54.firebaseio.com",
+    projectId: "chat-c5f54",
+    storageBucket: "chat-c5f54.appspot.com",
+    messagingSenderId: "249075345837"
 
 };
 
@@ -26,7 +27,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,12 +39,15 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
+    AuthService,
+    AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
