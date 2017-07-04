@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
-
+import {AngularFireDatabase} from 'angularfire2/database';
 import { User } from '../model/user';
 import * as firebase from 'firebase/app';
 
@@ -9,7 +9,7 @@ import * as firebase from 'firebase/app';
 export class AuthService {
   user: Observable<firebase.User>;
 
-  constructor(private angularFireAuth: AngularFireAuth) {
+  constructor(private angularFireAuth: AngularFireAuth, public afd : AngularFireDatabase) {
     this.user = angularFireAuth.authState;
   }
 
@@ -28,4 +28,13 @@ export class AuthService {
   resetPassword(email: string) {
     return this.angularFireAuth.auth.sendPasswordResetEmail(email);
   }
+
+  getUserByEmail(email: string):any {
+        return this.afd.list('usuario', {
+            query: {
+                orderByChild: 'email',
+                equalTo: email
+            }
+        });
+    }
 }
